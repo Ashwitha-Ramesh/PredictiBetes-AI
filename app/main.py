@@ -27,7 +27,7 @@ async def lifespan(app: FastAPI):
     logger.info("Shutting down Diabetes ML Application.")
 
 app = FastAPI(
-    title="GlucoPredict — Diabetes Risk Machine Learning Application",
+    title="PredictiBetes — AI-Powered Diabetes Risk Prediction & Clinical Analytics Platform",
     description="Full-stack machine learning web application using Scikit-Learn, FastAPI, Plotly, SQLite, and Bootstrap 5.",
     version="1.0.0",
     lifespan=lifespan
@@ -49,35 +49,36 @@ app.include_router(analytics.router)
 # Page Rendering Routes
 @app.get("/", response_class=HTMLResponse)
 def render_home_page(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="index.html")
 
 @app.get("/predict", response_class=HTMLResponse)
 def render_predict_page(request: Request):
-    return templates.TemplateResponse("predict.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="predict.html")
 
 @app.get("/dashboard", response_class=HTMLResponse)
 def render_dashboard_page(request: Request):
-    return templates.TemplateResponse("dashboard.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="dashboard.html")
 
 @app.get("/eda", response_class=HTMLResponse)
 def render_eda_page(request: Request):
-    return templates.TemplateResponse("eda.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="eda.html")
 
 @app.get("/models", response_class=HTMLResponse)
 def render_models_page(request: Request):
-    return templates.TemplateResponse("models.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="models.html")
 
 @app.get("/history", response_class=HTMLResponse)
 def render_history_page(request: Request):
-    return templates.TemplateResponse("history.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="history.html")
 
 # Global Exception Handlers
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     logger.warning(f"Validation Error at {request.url.path}: {exc}")
     return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "error": "Invalid clinical input parameters provided."},
+        request=request,
+        name="index.html",
+        context={"error": "Invalid clinical input parameters provided."},
         status_code=422
     )
 

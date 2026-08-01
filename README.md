@@ -118,22 +118,41 @@ No Docker Required
 
 # 📷 Application Preview
 
-> Add screenshots inside the `/screenshots` folder.
+# 📷 Application Preview
 
-```
-screenshots/
+### 🏠 Home Page
 
-home.png
+<img width="1353" alt="Home Page" src="https://github.com/user-attachments/assets/a9690cb1-8465-4617-a960-508af8bb4a9d" />
 
-prediction.png
+---
 
-dashboard.png
+### 🩺 Diabetes Prediction
 
-eda.png
+<img width="1346" alt="Prediction Page" src="https://github.com/user-attachments/assets/dba5cd7f-b8be-469b-9bb0-6c41116dd991" />
 
-models.png
+---
 
-history.png
+### 📊 Interactive Dashboard
+
+<img width="1352" alt="Dashboard" src="https://github.com/user-attachments/assets/c14dd499-a380-428e-bf5c-2aff490eceb7" />
+
+---
+
+### 📈 Exploratory Data Analysis (EDA)
+
+<img width="1340" alt="EDA" src="https://github.com/user-attachments/assets/a1f375bf-8776-4e2e-bdaa-fa45801fbbd4" />
+
+---
+
+### 🤖 Machine Learning Model Comparison
+
+<img width="1347" alt="Models Comparison" src="https://github.com/user-attachments/assets/dc1b83a4-ea27-4841-97ca-aa88e338dbd4" />
+
+---
+
+### 🗂 Prediction History
+
+<img width="1350" alt="Prediction History" src="https://github.com/user-attachments/assets/dd3e5a62-b55f-4645-827a-9b4485a74bc9" />
 ```
 
 ---

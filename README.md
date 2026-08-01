@@ -1,136 +1,435 @@
 # 🩺 PredictiBetes — AI-Powered Diabetes Prediction & Clinical Analytics Platform
 
-> **Developer Credit**: Developed with ❤️ by **Ashwitha Ramesh**
+<p align="center">
 
-[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4.0-F7931E.svg?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Plotly](https://img.shields.io/badge/Plotly-5.19.0-3F4F75.svg?style=flat&logo=plotly&logoColor=white)](https://plotly.com/)
-[![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3-7952B3.svg?style=flat&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-Production-green?style=for-the-badge&logo=fastapi)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?style=for-the-badge&logo=scikitlearn)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
+![Plotly](https://img.shields.io/badge/Plotly-Interactive-blueviolet?style=for-the-badge&logo=plotly)
+![SQLite](https://img.shields.io/badge/SQLite-Database-lightblue?style=for-the-badge&logo=sqlite)
 
-**PredictiBetes** is a full-stack, recruiter-ready Machine Learning web application designed to assess clinical diabetes risk, benchmark multiple classification algorithms, and deliver explainable AI insights.
+</p>
 
----
+<p align="center">
 
-## 🌟 Key Highlights
+🚀 **Live Demo:** https://your-render-url.onrender.com
 
-- **6 Machine Learning Algorithms**: Evaluates Logistic Regression, Random Forest, Decision Tree, Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Gaussian Naive Bayes.
-- **Model Explainability (XAI)**: Identifies top risk-driving metrics (e.g., Glucose, BMI) and protective factors for every single patient assessment.
-- **Multi-Step Animated Assessment**: Interactive progress loading experience (*Data Analysis ➔ Feature Evaluation ➔ ML Benchmarking ➔ Clinical Insights*).
-- **Interactive Plotly Visualizations**: Heatmaps, class distributions, box plots, and scatter plots with 1-click chart download capabilities.
-- **Persistent SQLite Prediction Log**: Search, filter, delete, and download prediction history as CSV.
-- **CSV Batch Upload**: Upload multi-patient CSV files for instant batch prediction results.
-- **Cloud Deployment Ready**: Optimized for 1-click deployment on Render, Railway, Koyeb, and Heroku without Docker or Celery complexity.
+⭐ **GitHub Repository:** https://github.com/Ashwitha-Ramesh/PredictiBetes-AI
+
+</p>
 
 ---
 
-## 📐 Architecture & Modular Structure
+# 📌 Overview
+
+PredictiBetes is a recruiter-ready end-to-end Machine Learning web application that predicts diabetes risk using multiple supervised learning algorithms while providing clinical analytics, explainable AI insights, interactive dashboards, and prediction history management.
+
+Unlike traditional ML notebooks, PredictiBetes demonstrates the complete production workflow—from data preprocessing and model training to deployment with FastAPI and cloud hosting.
+
+---
+
+# 🌟 Features
+
+## 🧠 Machine Learning
+
+- Logistic Regression
+- Random Forest
+- Decision Tree
+- Support Vector Machine (SVM)
+- K-Nearest Neighbors (KNN)
+- Gaussian Naive Bayes
+
+---
+
+## 📊 Interactive Analytics
+
+- Interactive Plotly Dashboard
+- Correlation Heatmaps
+- Feature Distributions
+- Boxplots
+- Scatter Plots
+- Clinical Statistics
+- Dataset Exploration
+
+---
+
+## 🤖 Explainable AI (XAI)
+
+Each prediction includes
+
+- Risk Probability
+- Confidence Score
+- Top Positive Risk Factors
+- Protective Factors
+- Clinical Interpretation
+- Personalized Health Recommendations
+
+---
+
+## 👨‍⚕️ Prediction System
+
+✔ Single Patient Prediction
+
+✔ Batch CSV Prediction
+
+✔ Real-time Risk Classification
+
+✔ Confidence Estimation
+
+✔ Feature Scaling
+
+✔ Missing Value Handling
+
+---
+
+## 🗄 Prediction History
+
+- SQLite Database
+- Search Predictions
+- Filter Records
+- Delete Records
+- CSV Export
+
+---
+
+## 🎨 Modern UI
+
+- Glassmorphism Design
+- Bootstrap 5
+- Responsive Layout
+- Interactive Charts
+- Dark Theme
+- Animated Dashboard
+
+---
+
+## ☁ Deployment
+
+Successfully deployed on
+
+**Render**
+
+Production Ready
+
+No Docker Required
+
+---
+
+# 📷 Application Preview
+
+> Add screenshots inside the `/screenshots` folder.
 
 ```
-diabetes-prediction/
-├── app/
-│   ├── main.py              # FastAPI application & template routing
-│   ├── database.py          # SQLAlchemy SQLite connection & session management
-│   ├── models.py            # PredictionRecord ORM database schema
-│   ├── schemas.py           # Pydantic request/response validation schemas
-│   ├── ml_model.py          # Scikit-learn ML pipeline & 6 classifier trainers
-│   ├── train_model.py       # ML training script to generate best_model.pkl
-│   ├── utils.py             # Logger, risk indicators & health recommendations
-│   ├── routers/
-│   │   ├── predict.py       # Single & batch prediction API endpoints
-│   │   ├── history.py       # Prediction history CRUD & CSV download endpoints
-│   │   └── analytics.py     # EDA, metrics & online retraining endpoints
-│   ├── services/
-│   │   ├── ml_service.py    # Business logic & DB persistence
-│   │   └── eda_service.py   # Statistical analysis & Plotly figure builder
-│   ├── templates/
-│   │   ├── base.html        # Master glassmorphic layout wrapper
-│   │   ├── index.html       # Landing page (hero, counters & workflow)
-│   │   ├── predict.html     # Single prediction form & CSV batch upload
-│   │   ├── dashboard.html   # Plotly interactive analytics dashboard
-│   │   ├── eda.html         # Correlation matrix & data quality report
-│   │   ├── models.html      # 6 Model comparison matrix & ROC/PR curves
-│   │   └── history.html     # SQLite prediction history table
-│   └── static/
-│       ├── css/custom.css   # Custom Glassmorphism CSS design system
-│       └── js/              # Modular Vanilla JS scripts
-├── dataset/diabetes.csv     # Benchmark Pima Indians Diabetes Dataset
-├── model/                   # Serialized best model & metrics JSON
-├── screenshots/             # Application visual previews
-├── requirements.txt         # Production dependencies
-├── LICENSE                  # MIT License (Ashwitha Ramesh)
-├── CONTRIBUTING.md          # Open-source contribution guide
-├── CHANGELOG.md             # Version release notes
-└── README.md                # Project documentation
+screenshots/
+
+home.png
+
+prediction.png
+
+dashboard.png
+
+eda.png
+
+models.png
+
+history.png
 ```
 
 ---
 
-## 🛠️ Tech Stack
+# 🏗 Project Architecture
 
-- **Backend**: FastAPI, Python 3.12, Uvicorn, Pydantic, SQLAlchemy, Joblib
-- **Machine Learning**: Scikit-Learn, Pandas, NumPy
-- **Frontend**: HTML5, Jinja2 Templates, Bootstrap 5, Vanilla JavaScript, Plotly.js
-- **Database**: SQLite
-- **Styling**: Glassmorphism CSS, Bootstrap Icons
+```
+PredictiBetes-AI
+│
+├── app
+│   ├── routers
+│   │     ├── predict.py
+│   │     ├── analytics.py
+│   │     └── history.py
+│   │
+│   ├── services
+│   │     ├── ml_service.py
+│   │     └── eda_service.py
+│   │
+│   ├── static
+│   │     ├── css
+│   │     ├── js
+│   │     └── images
+│   │
+│   ├── templates
+│   │     ├── base.html
+│   │     ├── index.html
+│   │     ├── predict.html
+│   │     ├── dashboard.html
+│   │     ├── eda.html
+│   │     ├── models.html
+│   │     └── history.html
+│   │
+│   ├── database.py
+│   ├── main.py
+│   ├── ml_model.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── train_model.py
+│   └── utils.py
+│
+├── dataset
+│     └── diabetes.csv
+│
+├── model
+│     ├── best_model.pkl
+│     └── metrics.json
+│
+├── notebooks
+│
+├── screenshots
+│
+├── requirements.txt
+├── LICENSE
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+└── README.md
+```
 
 ---
 
-## 🚀 Quickstart & Installation
+# ⚙ Technology Stack
 
-### 1. Clone & Navigate
+### Backend
+
+- FastAPI
+- Python
+- SQLAlchemy
+- Uvicorn
+- Pydantic
+
+---
+
+### Machine Learning
+
+- Scikit-Learn
+- Pandas
+- NumPy
+- Joblib
+
+---
+
+### Frontend
+
+- HTML5
+- Jinja2
+- Bootstrap 5
+- Vanilla JavaScript
+- Plotly.js
+
+---
+
+### Database
+
+SQLite
+
+---
+
+# 🚀 Local Installation
+
+## Clone Repository
+
 ```bash
-git clone https://github.com/your-username/PredictiBetes.git
-cd PredictiBetes
+git clone https://github.com/Ashwitha-Ramesh/PredictiBetes-AI.git
+
+cd PredictiBetes-AI
 ```
 
-### 2. Create Virtual Environment & Install Dependencies
+---
+
+## Create Virtual Environment
+
+Windows
+
 ```bash
 python -m venv venv
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
 
+venv\Scripts\activate
+```
+
+Linux / macOS
+
+```bash
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Train Models
+---
+
+## Train Models
+
 ```bash
 python app/train_model.py
 ```
 
-### 4. Run Server
+---
+
+## Run Application
+
 ```bash
 uvicorn app.main:app --reload
 ```
-Open **`http://127.0.0.1:8000`** in your browser.
+
+Open
+
+```
+http://127.0.0.1:8000
+```
 
 ---
 
-## 🌐 Cloud Deployment Guide (Render / Railway / Koyeb)
+# 🌐 Live Deployment
 
-PredictiBetes is pre-configured for cloud platforms:
+### Live Website
 
-- **Start Command**:
-  ```bash
-  uvicorn app.main:app --host 0.0.0.0 --port $PORT
-  ```
-- **Environment Variable**: Set `PORT` (automatically assigned by cloud provider).
+```
+https://predictibetes-ai.onrender.com/
+```
 
----
+Hosted using
 
-## 👨‍💻 Developer & Contact
-
-Developed by **Ashwitha Ramesh**
-
-- **GitHub**: [github.com](https://github.com/Ashwitha-Ramesh)
-- **LinkedIn**: [linkedin.com](https://www.linkedin.com/in/ashwitha-ramesh-0123ab315/)
-- **Email**: [ashwiramesh2005@gmail.com](mailto:ashwiramesh2005@gmail.com)
+- Render
+- FastAPI
+- Uvicorn
+- SQLite
 
 ---
 
-## 📜 License
+# 📈 Machine Learning Workflow
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+Dataset
+
+↓
+
+Data Cleaning
+
+↓
+
+Feature Engineering
+
+↓
+
+Train/Test Split
+
+↓
+
+Model Training
+
+↓
+
+Model Evaluation
+
+↓
+
+Best Model Selection
+
+↓
+
+FastAPI Backend
+
+↓
+
+Interactive Dashboard
+
+↓
+
+Cloud Deployment
+```
+
+---
+
+# 📊 Model Comparison
+
+| Algorithm | Evaluated |
+|------------|-----------|
+| Logistic Regression | ✅ |
+| Random Forest | ✅ |
+| Decision Tree | ✅ |
+| Support Vector Machine | ✅ |
+| KNN | ✅ |
+| Gaussian Naive Bayes | ✅ |
+
+---
+
+# 🔮 Future Improvements
+
+- User Authentication
+- Doctor Dashboard
+- PDF Clinical Report
+- REST API Versioning
+- Docker Support
+- PostgreSQL Integration
+- SHAP Explainability
+- Deep Learning Models
+- CI/CD using GitHub Actions
+
+---
+
+# 👨‍💻 Developer
+
+## Ashwitha Ramesh
+
+Computer Science Engineering Student
+
+AI • Machine Learning • Data Analytics • Open Source
+
+---
+
+### Connect with me
+
+📧 Email
+
+```
+ashwiramesh2005@gmail.com
+```
+
+💼 LinkedIn
+
+```
+https://www.linkedin.com/in/ashwitha-ramesh-0123ab315/
+```
+
+🐙 GitHub
+
+```
+https://github.com/Ashwitha-Ramesh
+```
+
+---
+
+# ⭐ Support
+
+If you found this project useful,
+
+⭐ Star the repository
+
+🍴 Fork the repository
+
+📢 Share it with others
+
+---
+
+# 📜 License
+
+Licensed under the MIT License.
+
+---
+
+> **Disclaimer:** PredictiBetes is an educational Machine Learning project intended for demonstration, research, and portfolio purposes. It is **not** a substitute for professional medical diagnosis or treatment.

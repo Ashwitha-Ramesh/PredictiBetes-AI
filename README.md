@@ -13,7 +13,7 @@
 
 <p align="center">
 
-🚀 **Live Demo:** https://your-render-url.onrender.com
+🚀 **Live Demo:** https://predictibetes-ai.onrender.com/
 
 ⭐ **GitHub Repository:** https://github.com/Ashwitha-Ramesh/PredictiBetes-AI
 

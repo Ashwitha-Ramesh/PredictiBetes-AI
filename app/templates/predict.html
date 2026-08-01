@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}Predict Risk — PredictiBetes Platform{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-1"><i class="bi bi-cpu-fill text-emerald me-2"></i> Clinical Diabetes Risk Predictor</h3>
+        <p class="text-secondary small mb-0">Enter patient physiological parameters to evaluate diabetic risk with machine learning models and explainable AI insights.</p>
+    </div>
+</div>
+
+<div class="row g-4 position-relative">
+    <!-- Form & Batch Upload Column -->
+    <div class="col-lg-7">
+        <div class="glass-card p-4">
+            <ul class="nav nav-pills mb-4 gap-2" id="predict-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-pill fw-semibold" id="single-tab" data-bs-toggle="tab" data-bs-target="#single-predict" type="button" role="tab">
+                        <i class="bi bi-person-bounding-box me-1"></i> Single Patient Assessment
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill fw-semibold" id="batch-tab" data-bs-toggle="tab" data-bs-target="#batch-predict" type="button" role="tab">
+                        <i class="bi bi-file-earmark-spreadsheet me-1"></i> Batch CSV Upload
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="predict-tab-content">
+                <!-- Single Predict Form -->
+                <div class="tab-pane fade show active" id="single-predict" role="tabpanel">
+                    <form id="prediction-form" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="pregnancies" class="form-label small text-secondary fw-semibold">Pregnancies (0 - 20)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-person"></i></span>
+                                    <input type="number" class="form-control" id="pregnancies" name="pregnancies" min="0" max="20" value="2" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="glucose" class="form-label small text-secondary fw-semibold">Glucose Concentration (mg/dL)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-droplet-fill text-danger"></i></span>
+                                    <input type="number" class="form-control" id="glucose" name="glucose" min="0" max="300" step="0.1" value="138" required>
+                                </div>
+                                <span class="form-text small text-secondary opacity-75">Fasting reference range: 70 - 99 mg/dL</span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="blood_pressure" class="form-label small text-secondary fw-semibold">Diastolic Blood Pressure (mmHg)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-heart-pulse-fill text-rose"></i></span>
+                                    <input type="number" class="form-control" id="blood_pressure" name="blood_pressure" min="0" max="200" step="0.1" value="72" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="skin_thickness" class="form-label small text-secondary fw-semibold">Skin Fold Thickness (mm)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-rulers"></i></span>
+                                    <input type="number" class="form-control" id="skin_thickness" name="skin_thickness" min="0" max="100" step="0.1" value="26" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="insulin" class="form-label small text-secondary fw-semibold">2-Hour Serum Insulin (mu U/ml)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-prescription2 text-cyan"></i></span>
+                                    <input type="number" class="form-control" id="insulin" name="insulin" min="0" max="900" step="0.1" value="110" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="bmi" class="form-label small text-secondary fw-semibold">BMI (kg/m²)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-speedometer"></i></span>
+                                    <input type="number" class="form-control" id="bmi" name="bmi" min="0" max="80" step="0.1" value="31.2" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="dpf" class="form-label small text-secondary fw-semibold">Diabetes Pedigree Function</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-diagram-2 text-indigo"></i></span>
+                                    <input type="number" class="form-control" id="dpf" name="dpf" min="0" max="3" step="0.001" value="0.587" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="age" class="form-label small text-secondary fw-semibold">Age (Years)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="bi bi-calendar-event"></i></span>
+                                    <input type="number" class="form-control" id="age" name="age" min="1" max="120" value="45" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" id="submit-btn" class="btn gradient-btn-emerald w-100 py-3 rounded-pill fw-bold shadow">
+                                <i class="bi bi-magic me-2"></i> Compute Prediction & Risk Analysis
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- CSV Batch Upload Tab -->
+                <div class="tab-pane fade" id="batch-predict" role="tabpanel">
+                    <div class="text-center py-5 border border-dashed border-secondary border-opacity-25 rounded-3 p-4">
+                        <i class="bi bi-cloud-arrow-up-fill fs-1 text-emerald mb-3"></i>
+                        <h5 class="fw-bold">Drag and Drop CSV File for Batch Prediction</h5>
+                        <p class="small text-secondary mb-3">
+                            CSV header columns: <code>Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age</code>
+                        </p>
+                        <form id="batch-form" enctype="multipart/form-data" class="max-w-md mx-auto">
+                            <input type="file" id="batch-file" name="file" accept=".csv" class="form-control mb-3" required>
+                            <button type="submit" class="btn gradient-btn-indigo px-4 py-2 rounded-pill fw-bold">
+                                <i class="bi bi-upload me-1"></i> Process Batch CSV
+                            </button>
+                        </form>
+                    </div>
+
+                    <div id="batch-results-container" class="mt-4 d-none">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold mb-0"><i class="bi bi-check-circle-fill text-success me-2"></i> Batch Assessment Results Summary</h6>
+                        </div>
+                        <div class="row text-center g-2 mb-3">
+                            <div class="col-4"><div class="p-3 bg-dark rounded-3"><span class="small text-secondary d-block">Total Rows</span><h4 id="batch-total" class="fw-bold mb-0">0</h4></div></div>
+                            <div class="col-4"><div class="p-3 bg-dark rounded-3"><span class="small text-secondary d-block">Diabetic</span><h4 id="batch-diabetic" class="fw-bold text-danger mb-0">0</h4></div></div>
+                            <div class="col-4"><div class="p-3 bg-dark rounded-3"><span class="small text-secondary d-block">Non-Diabetic</span><h4 id="batch-non-diabetic" class="fw-bold text-success mb-0">0</h4></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Output & Risk Analysis Column -->
+    <div class="col-lg-5">
+        <!-- Multi-Step Animated Loading Overlay -->
+        <div id="prediction-loading-overlay" class="d-none">
+            <div class="spinner-border text-emerald mb-3" style="width:3rem; height:3rem;" role="status"></div>
+            <h5 id="loading-step-title" class="fw-bold text-white mb-2">Analyzing Clinical Data...</h5>
+            <p class="small text-secondary mb-3">PredictiBetes Machine Learning Engine</p>
+            <div class="progress w-75" style="height:6px;">
+                <div id="loading-progress-bar" class="progress-bar bg-emerald progress-bar-striped progress-bar-animated" style="width: 25%;"></div>
+            </div>
+        </div>
+
+        <div id="results-placeholder" class="glass-card p-4 text-center h-100 d-flex flex-column align-items-center justify-content-center">
+            <i class="bi bi-activity fs-1 text-secondary opacity-40 mb-3"></i>
+            <h5 class="fw-bold">No Patient Assessment Computed Yet</h5>
+            <p class="small text-secondary mb-0">Fill out physiological parameters on the left and click submit to view real-time ML prediction, risk levels, and explainable AI insights.</p>
+        </div>
+
+        <div id="results-card" class="glass-card p-4 d-none">
+            <!-- Result Title -->
+            <div class="text-center mb-4">
+                <span id="result-badge" class="badge px-3 py-2 fs-6 rounded-pill mb-2">Result Badge</span>
+                <h3 id="result-title" class="fw-extrabold mb-1">Prediction Title</h3>
+                <p id="result-model-info" class="small text-secondary mb-0">Model: Scikit-Learn Classifier</p>
+            </div>
+
+            <!-- Emergency High Risk Warning Alert -->
+            <div id="emergency-alert" class="alert alert-danger border-0 bg-danger bg-opacity-15 text-danger rounded-3 d-none mb-3" role="alert">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                    <div>
+                        <strong class="d-block">High Clinical Risk Warning</strong>
+                        <span class="small">Elevated blood glucose and risk metrics detected. Immediate consultation with an endocrinologist is strongly recommended.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confidence Meter -->
+            <div class="p-3 bg-dark bg-opacity-40 rounded-3 mb-3 text-center">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="small text-secondary fw-semibold">Prediction Confidence Score</span>
+                    <span id="confidence-val" class="fw-bold text-emerald">0%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                    <div id="confidence-bar" class="progress-bar bg-emerald" role="progressbar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- Risk Level & BMI Badges -->
+            <div class="row g-2 mb-4">
+                <div class="col-6">
+                    <div class="p-3 bg-dark bg-opacity-30 rounded-3 text-center">
+                        <span class="small text-secondary d-block">Risk Level</span>
+                        <span id="risk-level-badge" class="badge px-3 py-1 fs-6 mt-1">Moderate</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 bg-dark bg-opacity-30 rounded-3 text-center">
+                        <span class="small text-secondary d-block">BMI Category</span>
+                        <span id="bmi-category-badge" class="badge bg-secondary px-3 py-1 fs-6 mt-1">Normal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Explainability / Top Factors -->
+            <div id="explainability-container" class="mb-4 p-3 bg-dark bg-opacity-40 rounded-3 border-start border-3 border-indigo">
+                <h6 class="fw-bold mb-2 text-white"><i class="bi bi-lightbulb-fill text-warning me-2"></i> Model Explainability (Key Factors)</h6>
+                <div id="explainability-list" class="small text-secondary">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Personalized Health Recommendations -->
+            <div id="health-tips-container" class="mb-3">
+                <h6 class="fw-bold mb-2"><i class="bi bi-heart-pulse-fill text-rose me-2"></i> Tailored Clinical & Lifestyle Tips</h6>
+                <ul id="tips-list" class="list-group list-group-flush small text-secondary">
+                </ul>
+            </div>
+
+            <p class="small text-secondary text-opacity-50 text-center mb-0 mt-3" style="font-size: 0.7rem;">
+                PredictiBetes Machine Learning Output • Model Artifact: <code>best_model.pkl</code>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/predict.js"></script>
+{% endblock %}

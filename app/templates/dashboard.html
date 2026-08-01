@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Interactive Dataset Analytics Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-1"><i class="bi bi-speedometer2 text-emerald me-2"></i> Clinical Analytics Dashboard</h3>
+        <p class="text-secondary small mb-0">Overview of Pima Indians Diabetes Dataset features, class distributions, and correlations.</p>
+    </div>
+    <a href="/eda" class="btn btn-outline-secondary rounded-pill btn-sm">
+        <i class="bi bi-arrow-right-circle me-1"></i> Open Advanced Correlation & EDA
+    </a>
+</div>
+
+<!-- Stats Summary Row -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="glass-card p-3 d-flex align-items-center gap-3">
+            <div class="stat-icon bg-primary bg-opacity-20 text-indigo">
+                <i class="bi bi-file-earmark-person"></i>
+            </div>
+            <div>
+                <span class="small text-secondary">Total Patient Records</span>
+                <h4 id="dash-total-records" class="fw-bold mb-0">768</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="glass-card p-3 d-flex align-items-center gap-3">
+            <div class="stat-icon bg-danger bg-opacity-20 text-rose">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <div>
+                <span class="small text-secondary">Diabetic Cases</span>
+                <h4 id="dash-diabetic-count" class="fw-bold text-rose mb-0">268 (34.9%)</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="glass-card p-3 d-flex align-items-center gap-3">
+            <div class="stat-icon bg-success bg-opacity-20 text-emerald">
+                <i class="bi bi-check-circle"></i>
+            </div>
+            <div>
+                <span class="small text-secondary">Non-Diabetic Cases</span>
+                <h4 id="dash-nondiabetic-count" class="fw-bold text-emerald mb-0">500 (65.1%)</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="glass-card p-3 d-flex align-items-center gap-3">
+            <div class="stat-icon bg-warning bg-opacity-20 text-amber">
+                <i class="bi bi-bandaid"></i>
+            </div>
+            <div>
+                <span class="small text-secondary">Feature Count</span>
+                <h4 class="fw-bold text-amber mb-0">8 Clinical Features</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Plotly Charts Row 1 -->
+<div class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="glass-card p-4 h-100">
+            <div id="chart-outcome" style="width:100%; height:380px;"></div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="glass-card p-4 h-100">
+            <div id="chart-histogram" style="width:100%; height:380px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Plotly Charts Row 2 -->
+<div class="row g-4 mb-4">
+    <div class="col-lg-12">
+        <div class="glass-card p-4">
+            <div id="chart-scatter" style="width:100%; height:450px;"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

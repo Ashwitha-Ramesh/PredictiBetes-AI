@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}PredictiBetes — AI-Powered Diabetes Risk Prediction & Clinical Analytics Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-wrapper">
+    <div class="hero-mesh"></div>
+    <div class="container hero-content py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-success bg-opacity-10 border border-success border-opacity-25 mb-3">
+                    <span class="spinner-grow spinner-grow-sm text-emerald" role="status"></span>
+                    <span class="small fw-semibold text-emerald">Production Machine Learning Platform</span>
+                </div>
+                
+                <h1 class="display-3 fw-extrabold mb-3">
+                    Predicti<span class="gradient-text-emerald">Betes</span>
+                </h1>
+                
+                <h2 class="h3 fw-semibold text-secondary mb-3">
+                    AI-Powered Diabetes Prediction & Clinical Analytics Platform
+                </h2>
+                
+                <p class="lead text-secondary mb-4 pe-lg-4" style="font-size: 1.15rem;">
+                    Predict diabetes risk using Machine Learning while exploring interactive analytics, multiple model benchmarking, and clinical insights. Designed and developed by <strong class="text-white">Ashwitha Ramesh</strong>.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mb-5">
+                    <a href="/predict" class="btn gradient-btn-emerald btn-lg px-4 py-3 rounded-pill fw-bold shadow">
+                        <i class="bi bi-play-circle-fill me-2"></i> Predict Now
+                    </a>
+                    <a href="/dashboard" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill fw-bold">
+                        <i class="bi bi-bar-chart-steps me-2"></i> Explore Dashboard
+                    </a>
+                    <a href="https://github.com" target="_blank" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-pill fw-bold">
+                        <i class="bi bi-github me-2"></i> View GitHub
+                    </a>
+                </div>
+
+                <!-- Animated KPI Counter Cards -->
+                <div class="row g-3">
+                    <div class="col-6 col-sm-3">
+                        <div class="glass-card p-3 text-center">
+                            <h3 class="fw-extrabold mb-0 text-emerald" id="counter-patients">768</h3>
+                            <span class="small text-secondary fw-semibold">Patient Records</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <div class="glass-card p-3 text-center">
+                            <h3 class="fw-extrabold mb-0 text-indigo" id="counter-models">6</h3>
+                            <span class="small text-secondary fw-semibold">ML Classifiers</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <div class="glass-card p-3 text-center">
+                            <h3 class="fw-extrabold mb-0 text-cyan" id="counter-accuracy">86.4%</h3>
+                            <span class="small text-secondary fw-semibold">Accuracy</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <div class="glass-card p-3 text-center">
+                            <h3 class="fw-extrabold mb-0 text-amber" id="counter-auc">0.929</h3>
+                            <span class="small text-secondary fw-semibold">ROC-AUC Score</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthcare Illustration & Live Chart -->
+            <div class="col-lg-5">
+                <div class="glass-card p-4 position-relative overflow-hidden floating-element">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="stat-icon bg-primary bg-opacity-20 text-indigo" style="width:32px; height:32px; font-size:1rem;">
+                                <i class="bi bi-activity"></i>
+                            </span>
+                            <h6 class="fw-bold mb-0">ML Benchmark Matrix</h6>
+                        </div>
+                        <span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 px-2.5 py-1">Pima Dataset</span>
+                    </div>
+
+                    <div class="ratio ratio-16x9 rounded-3 overflow-hidden bg-dark bg-opacity-40 mb-3 border border-secondary border-opacity-20">
+                        <div id="hero-benchmark-chart" style="width:100%; height:100%;"></div>
+                    </div>
+
+                    <div class="p-3 bg-dark bg-opacity-40 rounded-3 border-start border-3 border-emerald">
+                        <p class="small text-secondary mb-0">
+                            <i class="bi bi-check-circle-fill text-emerald me-1"></i>
+                            <strong>Best Classifier Selected:</strong> Logistic Regression & Random Forest pipelines with standardized feature scaling.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio & Technical Highlights -->
+<div class="py-5 border-top border-secondary border-opacity-10">
+    <div class="container">
+        <div class="text-center max-w-2xl mx-auto mb-5">
+            <h2 class="fw-bold display-6 mb-2">End-to-End <span class="gradient-text-emerald">Machine Learning</span> Workflow</h2>
+            <p class="text-secondary">Designed and built with production software engineering standards.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="glass-card p-4 h-100">
+                    <div class="stat-icon bg-success bg-opacity-20 text-emerald mb-3">
+                        <i class="bi bi-cpu-fill"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">1. Clinical Inference Engine</h5>
+                    <p class="text-secondary small mb-0">Accepts 8 physiological inputs (*Glucose, BMI, Age, Pedigree Function, Insulin, BP, Skin Thickness, Pregnancies*), performs median imputation, scaling, and generates risk level scores.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card p-4 h-100">
+                    <div class="stat-icon bg-primary bg-opacity-20 text-indigo mb-3">
+                        <i class="bi bi-diagram-3-fill"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">2. 6-Model Comparative Suite</h5>
+                    <p class="text-secondary small mb-0">Evaluates Logistic Regression, Random Forest, Decision Tree, Support Vector Machine, K-Nearest Neighbors, and Naive Bayes across 7 evaluation metrics.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card p-4 h-100">
+                    <div class="stat-icon bg-info bg-opacity-20 text-cyan mb-3">
+                        <i class="bi bi-database-fill-check"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">3. SQLite History & Analytics</h5>
+                    <p class="text-secondary small mb-0">Persists all predictions inside SQLite. Offers real-time search, sorting, risk filter badges, individual record deletion, and CSV export.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Fetch ML metrics for Hero chart
+    fetch('/api/metrics')
+        .then(res => res.json())
+        .then(data => {
+            if (data.models) {
+                const names = Object.keys(data.models);
+                const accs = names.map(n => data.models[n].accuracy * 100);
+                
+                const trace = {
+                    x: names,
+                    y: accs,
+                    type: 'bar',
+                    marker: {
+                        color: ['#10B981', '#6366F1', '#06B6D4', '#F59E0B', '#8B5CF6', '#EC4899']
+                    }
+                };
+
+                const layout = {
+                    title: '',
+                    margin: { t: 20, b: 40, l: 35, r: 15 },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    font: { color: '#94A3B8', family: 'Inter, sans-serif' },
+                    yaxis: { range: [60, 100], gridcolor: 'rgba(255,255,255,0.05)' },
+                    xaxis: { gridcolor: 'rgba(255,255,255,0.05)' }
+                };
+
+                Plotly.newPlot('hero-benchmark-chart', [trace], layout, {responsive: true, displayModeBar: false});
+            }
+        });
+});
+</script>
+{% endblock %}

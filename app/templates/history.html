@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}SQLite Prediction History Log{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-1"><i class="bi bi-clock-history text-emerald me-2"></i> Prediction History Log</h3>
+        <p class="text-secondary small mb-0">Persistent SQLite database records of clinical predictions with search, sort, and export.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="/api/history/download" class="btn gradient-btn-emerald rounded-pill px-3">
+            <i class="bi bi-download me-1"></i> Export History CSV
+        </a>
+        <button id="clear-all-btn" class="btn btn-outline-danger rounded-pill px-3">
+            <i class="bi bi-trash me-1"></i> Clear History
+        </button>
+    </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="glass-card p-3 mb-4">
+    <div class="row g-3 align-items-center">
+        <div class="col-md-5">
+            <div class="input-group">
+                <span class="input-group-text bg-transparent text-secondary border-end-0"><i class="bi bi-search"></i></span>
+                <input type="text" id="history-search" class="form-control border-start-0" placeholder="Search by risk level, BMI category, or model used...">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <select id="history-risk-filter" class="form-select">
+                <option value="">All Risk Levels</option>
+                <option value="Low">Low Risk</option>
+                <option value="Moderate">Moderate Risk</option>
+                <option value="High">High Risk</option>
+                <option value="Very High">Very High Risk</option>
+            </select>
+        </div>
+        <div class="col-md-3 text-end">
+            <span id="history-count-badge" class="badge bg-secondary px-3 py-2 fs-6">0 Records</span>
+        </div>
+    </div>
+</div>
+
+<!-- History Table -->
+<div class="glass-card p-4">
+    <div class="table-responsive">
+        <table class="table table-glass table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Result</th>
+                    <th>Probability</th>
+                    <th>Risk Level</th>
+                    <th>Glucose</th>
+                    <th>BMI</th>
+                    <th>Age</th>
+                    <th>Model Used</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="history-tbody">
+                <!-- Injected via JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/history.js"></script>
+{% endblock %}
